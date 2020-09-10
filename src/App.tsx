@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import VendingMachineShell from "./components/VendingMachineShell";
+import BeveragesList from "./components/BeveragesList";
+import Payment from "./components/Payment";
+import mockedList from "./__test__/mockedBeveragesList.json";
+import { createGlobalStyle } from "styled-components";
+import { ThemeProvider } from "styled-components";
+import { colors } from "@dexma/ui-components";
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+  }
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <ThemeProvider theme={colors}>
+        <VendingMachineShell
+          beverageLayout={<BeveragesList list={mockedList} />}
+          paymentLayout={<Payment />}
+        />
+        <GlobalStyle />
+      </ThemeProvider>
     </div>
   );
 }
