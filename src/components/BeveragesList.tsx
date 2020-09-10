@@ -18,8 +18,11 @@ export default function BeveragesList({ list }: IBeveragesList) {
     _list.map((beverage) => (
       <BeverageCard
         {...beverage}
-        handleSelectedBeverage={() =>
+        handleAddSelectedBeverage={() =>
           context.dispatch(actions.addSelectedBeverage(beverage))
+        }
+        handleRemoveSeleced={() =>
+          context.dispatch(actions.removeSelectedBeverage(beverage.id))
         }
       />
     ));

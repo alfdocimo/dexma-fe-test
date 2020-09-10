@@ -11,6 +11,16 @@ export default function reducer(state, action) {
         ...state,
         selectedBeverages: [...state.selectedBeverages, action.beverage],
       };
+
+    case Types.REMOVE_SELECTED_BEVERAGE:
+      const selectedBeverages = state.selectedBeverages.filter(
+        (beverages) => beverages.id !== action.id
+      );
+
+      return {
+        ...state,
+        selectedBeverages,
+      };
     default:
       return state;
   }

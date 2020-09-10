@@ -46,6 +46,7 @@ export default function Payment() {
             text="Proceed to payment"
             variant="primary"
             iconBefore="circle_check"
+            isDisabled={context.state.balance < beverageList.price}
           />
         </Cell>
 

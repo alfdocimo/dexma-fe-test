@@ -1,6 +1,7 @@
 export enum Types {
   INCREMENT_BALANCE = "INCREMENT_BALANCE",
   ADD_SELECTED_BEVERAGE = "ADD_SELECTED_BEVERAGE",
+  REMOVE_SELECTED_BEVERAGE = "REMOVE_SELECTED_BEVERAGE",
 }
 
 const incrementBalance = (amount: number) => ({
@@ -13,7 +14,13 @@ const addSelectedBeverage = (beverage) => ({
   beverage,
 });
 
+const removeSelectedBeverage = (id) => ({
+  type: Types.REMOVE_SELECTED_BEVERAGE,
+  id,
+});
+
 export default {
+  removeSelectedBeverage,
   addSelectedBeverage,
   incrementBalance,
 };

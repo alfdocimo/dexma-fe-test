@@ -4,7 +4,8 @@ import styled from "styled-components";
 import { IBeverage } from "../interfaces/beverage";
 
 interface IBeverageProps extends IBeverage {
-  handleSelectedBeverage: Function;
+  handleAddSelectedBeverage: Function;
+  handleRemoveSeleced: Function;
 }
 
 const StyledCell = styled(Cell)`
@@ -15,7 +16,8 @@ export default function BeverageCard({
   name,
   price,
   amount,
-  handleSelectedBeverage,
+  handleAddSelectedBeverage,
+  handleRemoveSeleced,
 }: IBeverageProps) {
   return (
     <StyledCell xs={4}>
@@ -37,7 +39,7 @@ export default function BeverageCard({
                     text="Add"
                     variant="primary"
                     iconBefore="add"
-                    onClick={handleSelectedBeverage}
+                    onClick={handleAddSelectedBeverage}
                   />
                 </Cell>
                 <Cell xs={6}>
@@ -46,6 +48,7 @@ export default function BeverageCard({
                     text="Remove"
                     variant="destructive"
                     iconBefore="delete"
+                    onClick={handleRemoveSeleced}
                   />
                 </Cell>
               </Row>

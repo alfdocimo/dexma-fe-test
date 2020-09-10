@@ -9,6 +9,7 @@ interface IVendingMachineShell {
 
 const StyledVendingMachineGrid = styled(Grid)`
   width: auto;
+  height: 100vh;
   background: ${(props) => props.theme.gray200};
 `;
 
