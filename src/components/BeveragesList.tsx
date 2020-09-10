@@ -12,7 +12,6 @@ interface IBeveragesList {
 
 export default function BeveragesList({ list }: IBeveragesList) {
   const context = useContext(AppContext);
-  console.log("BeveragesList -> context", context);
 
   const renderList = (_list: IBeveragesList["list"]) =>
     _list.map((beverage) => (
