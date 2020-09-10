@@ -1,18 +1,22 @@
 import React from "react";
-import { Card, Grid, Row, Cell, Button } from "@dexma/ui-components";
+import { Card, Grid, Row, Cell, Button, Paragraph } from "@dexma/ui-components";
 import styled from "styled-components";
+import { IBeverage } from "../interfaces/beverage";
 
-export interface IBeverage {
-  price: number;
-  name: string;
-  amount: number;
+interface IBeverageProps extends IBeverage {
+  handleSelectedBeverage: Function;
 }
 
 const StyledCell = styled(Cell)`
   padding: 5px;
 `;
 
-export default function BeverageCard({ name, price, amount }: IBeverage) {
+export default function BeverageCard({
+  name,
+  price,
+  amount,
+  handleSelectedBeverage,
+}: IBeverageProps) {
   return (
     <StyledCell xs={4}>
       <Card
@@ -22,12 +26,18 @@ export default function BeverageCard({ name, price, amount }: IBeverage) {
           <>
             <Grid>
               <Row>
+                <Paragraph m="1rem 0 1rem 0">
+                  price: {price}, amount: {amount}
+                </Paragraph>
+              </Row>
+              <Row>
                 <Cell xs={6}>
                   <Button
                     isExpanded
                     text="Add"
                     variant="primary"
                     iconBefore="add"
+                    onClick={handleSelectedBeverage}
                   />
                 </Cell>
                 <Cell xs={6}>
@@ -42,9 +52,7 @@ export default function BeverageCard({ name, price, amount }: IBeverage) {
             </Grid>
           </>
         }
-      >
-        price: {price}, amount: {amount}
-      </Card>
+      ></Card>
     </StyledCell>
   );
 }

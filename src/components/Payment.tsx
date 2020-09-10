@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
-import { Grid, Row, Cell, Paragraph, Button } from "@dexma/ui-components";
+import {
+  Grid,
+  Row,
+  Cell,
+  Paragraph,
+  Button,
+  Divider,
+} from "@dexma/ui-components";
+import { AppContext, actions } from "../context";
+import getSelectedBeverages from "../helpers/getSelectedBeverages";
 
 // Could have used a Card component, but it doesn't accept children 🤔
 const StyledPaymentGrid = styled(Grid)`
@@ -11,25 +20,40 @@ const StyledPaymentGrid = styled(Grid)`
 `;
 
 export default function Payment() {
+  const context = useContext(AppContext);
+
+  const beverageList = getSelectedBeverages(context.state.selectedBeverages);
+
   return (
     <StyledPaymentGrid fluid>
       <Row>
         <Cell xs={6}>
-          <Paragraph m="1rem 0 1rem 0">Current coins added: $coins</Paragraph>
+          <Paragraph m="1rem 0 1rem 0">
+            Current balance: {context.state.balance} 💰
+          </Paragraph>
         </Cell>
         <Cell xs={6}>
-          <Button text="Add coins" variant="secondary" iconBefore="add" />
+          <Button
+            text="Add coins"
+            variant="secondary"
+            iconBefore="add"
+            onClick={() => context.dispatch(actions.incrementBalance(10))}
+          />
         </Cell>
-        <Row>
-          <Cell xs={12}>
-            <Button
-              isExpanded
-              text="Proceed to payment"
-              variant="primary"
-              iconBefore="circle_check"
-            />
-          </Cell>
-        </Row>
+        <Cell xs={12}>
+          <Button
+            isExpanded
+            text="Proceed to payment"
+            variant="primary"
+            iconBefore="circle_check"
+          />
+        </Cell>
+
+        <Cell xs={12}>
+          <Paragraph m="1rem 0 1rem 0">
+            Total price: {beverageList.price}
+          </Paragraph>
+        </Cell>
       </Row>
     </StyledPaymentGrid>
   );

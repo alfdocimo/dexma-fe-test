@@ -7,7 +7,8 @@ interface IVendingMachineShell {
   paymentLayout: React.ReactNode;
 }
 
-const StyledVendingMachineShell = styled.div`
+const StyledVendingMachineGrid = styled(Grid)`
+  width: auto;
   background: ${(props) => props.theme.gray200};
 `;
 
@@ -16,18 +17,13 @@ export default function VendingMachineShell({
   paymentLayout,
 }: IVendingMachineShell) {
   return (
-    <StyledVendingMachineShell>
-      <Grid fluid>
-        <Row>
-          <Cell xs={6}>{beverageLayout}</Cell>
-          <Cell xsOffset={1} xs={3}>
-            {paymentLayout}
-          </Cell>
-        </Row>
-        <Row>
-          <Cell xs={12}>this is sum footer</Cell>
-        </Row>
-      </Grid>
-    </StyledVendingMachineShell>
+    <StyledVendingMachineGrid fluid>
+      <Row>
+        <Cell xs={6}>{beverageLayout}</Cell>
+        <Cell xsOffset={1} xs={3}>
+          {paymentLayout}
+        </Cell>
+      </Row>
+    </StyledVendingMachineGrid>
   );
 }
